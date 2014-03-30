@@ -1,3 +1,4 @@
+package flyer;
 import java.io.File;
 
 import javax.imageio.ImageIO;
