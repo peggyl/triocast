@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -148,16 +149,9 @@ public class FlyerGenerator extends JFrame{
 		
 		contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
-//		contentPane.add(eventPanel, BorderLayout.CENTER);
-//		contentPane.add(timeDatePanel, BorderLayout.NORTH);
-//		contentPane.add(locationPanel, BorderLayout.EAST);
-//		contentPane.add(logoPanel, BorderLayout.SOUTH);
 		contentPane.add(eventPanel, BorderLayout.EAST);
-//		contentPane.setLayout(new GridLayout(2, 3));
 		contentPane.add(timeDatePanel, BorderLayout.CENTER);
 		contentPane.add(locationPanel, BorderLayout.SOUTH);
-//		contentPane.add(new JPanel());
-//		contentPane.add(new JPanel());
 		contentPane.add(logoPanel, BorderLayout.NORTH);
 	}
 	
