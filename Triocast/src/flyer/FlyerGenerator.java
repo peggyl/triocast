@@ -36,7 +36,7 @@ public class FlyerGenerator extends JFrame{
 	private JPanel timeDatePanel;
 
 	private JPanel logoPanel;
-	
+
 	public FlyerGenerator(JSONObject info)
 	{
 		super();
@@ -49,7 +49,7 @@ public class FlyerGenerator extends JFrame{
 		setTitle("");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-//		setUndecorated(true);
+		//		setUndecorated(true);
 		eventPanelSetup((boolean[])info.get("tags"));
 		timeDatePanelSetup(info.getString("day"), info.getString("date"), info.getString("time"));
 
@@ -77,7 +77,7 @@ public class FlyerGenerator extends JFrame{
 		setTitle("");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-	//	setUndecorated(true);
+		//	setUndecorated(true);
 		eventPanelSetup(tags);
 		timeDatePanelSetup(day, date, time);
 		//**logoPanel!!**
@@ -150,7 +150,6 @@ public class FlyerGenerator extends JFrame{
 
 		try{
 			//assume DAY is only of these values
-
 			if (day.equals("Monday"))
 				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/01 Monday.png")))));
 			else if (day.equals("Tuesday"))
@@ -172,12 +171,7 @@ public class FlyerGenerator extends JFrame{
 		try{
 			for(int i = 0; i < date.length(); i++)
 				if (date.charAt(i) == '0')
-				{
-					if (i != 0 && i != 3)
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/0.png")))));
-					else
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/empty.png")))));
-				}
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/0.png")))));
 				else if (date.charAt(i) == '1')
 					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/1.png")))));
 				else if (date.charAt(i) == '2')
@@ -248,7 +242,11 @@ public class FlyerGenerator extends JFrame{
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(eventPanel, BorderLayout.EAST);
 		contentPane.add(timeDatePanel, BorderLayout.CENTER);
-		contentPane.add(logoPanel, BorderLayout.NORTH);
+
+		JPanel topPanel = new JPanel(new BorderLayout());
+		topPanel.add(logoPanel, BorderLayout.NORTH);
+		topPanel.add(timeDatePanel, BorderLayout.CENTER);
+		contentPane.add(topPanel, BorderLayout.NORTH);
 		contentPane.add(eventPanel, BorderLayout.SOUTH);
 	}
 

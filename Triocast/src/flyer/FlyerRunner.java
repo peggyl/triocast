@@ -23,7 +23,7 @@ public class FlyerRunner {
 		String time = "", date = "", dayWeek = "";
 		
 		int month = (int)(Math.random() * 12 + 1);
-		int day = (int)(Math.random() * 31);
+		int day = (int)(Math.random() * 31 + 1);
 		
 		if (month < 10)
 			date += "0";

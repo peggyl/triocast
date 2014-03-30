@@ -20,7 +20,7 @@ public class TriocastApplet extends JApplet{
 
 					HashMap<String, Image> imageSet = new HashMap<String, Image>();
 
-					imageSet.put("logo", getImage(getCodeBase(), "UMDGrayscale_small.png"));
+					imageSet.put("logo", getImage(getDocumentBase(), "UMDGrayscale_small.png"));
 					
 					imageSet.put("0", getImage(getCodeBase(), "0.png"));
 					imageSet.put("1", getImage(getCodeBase(), "1.png"));
@@ -61,12 +61,13 @@ public class TriocastApplet extends JApplet{
 
 					boolean[] tags = new boolean[6];
 					for(int i = 0; i < tags.length; i++)
-						tags[i] = Math.random() < .5;
+						tags[i] = Math.random() < .3;
+					tags[(int)(Math.random() * tags.length)] = true;
 
 					String time = "", date = "", dayWeek = "";
 
 					int month = (int)(Math.random() * 12 + 1);
-					int day = (int)(Math.random() * 31);
+					int day = (int)(Math.random() * 31 + 1);
 
 					if (month < 10)
 						date += "0";
@@ -112,6 +113,7 @@ public class TriocastApplet extends JApplet{
 					info2.put("day", getParameter("day"));
 					info2.put("date", getParameter("date"));
 					info2.put("time", getParameter("time"));
+					info2.put("size", getParameter("size"));
 					
 					tags[0] = getParameter("Meal?").equals("true");
 					tags[1] = getParameter("Religious?").equals("true");
@@ -119,22 +121,29 @@ public class TriocastApplet extends JApplet{
 					tags[3] = getParameter("Shelter?").equals("true");
 					tags[4] = getParameter("Budget?").equals("true");
 					tags[5] = getParameter("Donations?").equals("true");
+					
+					info2.put("tags", tags);
 
-					FlyerGeneratorApplet fg = new FlyerGeneratorApplet(info, imageSet);
+					FlyerGeneratorApplet fg = new FlyerGeneratorApplet(info2, imageSet);
+					
+					TriocastApplet.this.add(fg);
 					fg.setVisible(true);
-					try {
-						// write the image as a PNG
-						ImageIO.write(
-								FlyerGeneratorApplet.getScreenShot(fg.getContentPane()),
-								"png",
-								new File("flyer_applet.png"));
-						System.out.println("Screenshot taken!");
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
+					
+//					
+//					try {
+//						// write the image as a PNG
+//						ImageIO.write(
+//								FlyerGeneratorApplet.getScreenShot(fg.getContentPane()),
+//								"png",
+//								new File("flyer_applet.png"));
+//						System.out.println("Screenshot taken!");
+//					} catch(Exception e) {
+//						e.printStackTrace();
+//					}
 				}
 			});
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("error!");
 		}
 	}

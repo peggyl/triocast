@@ -26,26 +26,20 @@ import json.JSONObject;
  * using Douglas Crockford's JSONObject class and other classes necessary to make that function
  */
 
-public class FlyerGeneratorApplet extends JFrame{
+public class FlyerGeneratorApplet extends JPanel{
 	private Container contentPane;
 	//	private static JPanel tagsPanel;
 	private JPanel eventPanel; //is this the same as tagsPanel?
 	/*
 	 * consider: what makes an event picture?
 	 * consider: make it like Bang! in which events are made up of the tags that are associated with them
-	 * a church service would be: a cross?
-	 * a church service, with a meal: a cross AND a meal icon
 	 */
 	private JPanel timeDatePanel;
-
-	/*
-	 * consider: include DAY OF THE WEEK and also CALENDAR DATE
-	 */
 
 	private JPanel logoPanel;
 
 	HashMap<String, Image> imageSet = new HashMap<String, Image>();
-	
+
 	public FlyerGeneratorApplet(JSONObject info, HashMap<String, Image> iS)
 	{
 		super();
@@ -56,13 +50,17 @@ public class FlyerGeneratorApplet extends JFrame{
 		 */
 		String[] sizeParse = info.getString("size").split("x");
 		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
-		setTitle("");
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		setUndecorated(true);
+//		setTitle("");
+//		setResizable(false);
+		try {
+//		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		} catch (Exception e) {
+			
+		}
+		//		setUndecorated(true);
 		eventPanelSetup((boolean[])info.get("tags"));
 		timeDatePanelSetup(info.getString("day"), info.getString("date"), info.getString("time"));
-		
+
 		//**logoPanel!!**
 		logoPanel = new JPanel();
 		logoPanel.add(new JLabel(new ImageIcon(imageSet.get("logo"))));
@@ -87,132 +85,114 @@ public class FlyerGeneratorApplet extends JFrame{
 	{
 		//**eventPanel!!**
 		eventPanel = new JPanel(new GridLayout(1, tags.length)); //by default, is FlowLayout. grid it?
-			if (tags[0])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("meal"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("meal grey"))));
+		if (tags[0])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("meal"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("meal grey"))));
 
-			if (tags[1])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("religious"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("religious grey"))));
+		if (tags[1])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("religious"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("religious grey"))));
 
-			if (tags[2])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("education"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("education grey"))));
+		if (tags[2])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("education"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("education grey"))));
 
-			if (tags[3])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("shelter"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("shelter grey"))));
+		if (tags[3])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("shelter"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("shelter grey"))));
 
-			if (tags[4])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("budget"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("budget grey"))));
+		if (tags[4])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("budget"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("budget grey"))));
 
-			if (tags[5])
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("donations"))));
-			else
-				eventPanel.add(new JLabel(new ImageIcon(imageSet.get("donations grey"))));
+		if (tags[5])
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("donations"))));
+		else
+			eventPanel.add(new JLabel(new ImageIcon(imageSet.get("donations grey"))));
 	}
 
 	public void timeDatePanelSetup(String day, String date, String time)
 	{
 		//**timeDatePanel!!**
 		timeDatePanel = new JPanel(new GridLayout(2, 7));
+		timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get(day))));
+		timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("empty"))));
+		for(int i = 0; i < date.length(); i++)
+			if (date.charAt(i) == '0')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("0"))));
+			else if (date.charAt(i) == '1')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("1"))));
+			else if (date.charAt(i) == '2')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("2"))));
+			else if (date.charAt(i) == '3')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("3"))));
+			else if (date.charAt(i) == '4')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("4"))));
+			else if (date.charAt(i) == '5')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("5"))));
+			else if (date.charAt(i) == '6')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("6"))));
+			else if (date.charAt(i) == '7')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("7"))));
+			else if (date.charAt(i) == '8')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("8"))));
+			else if (date.charAt(i) == '9')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("9"))));
+			else if (date.charAt(i) == '/')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("Slash"))));
 
-//			if (day.equals("Monday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("monday"))));
-//			else if (day.equals("Tuesday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("tuesday"))));
-//			else if (day.equals("Wednesday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("wednesday"))));
-//			else if (day.equals("Thursday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("thursday"))));
-//			else if (day.equals("Friday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("friday"))));
-//			else if (day.equals("Saturday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("saturday"))));
-//			else if (day.equals("Sunday"))
-//				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("sunday"))));
-			
-			timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get(day))));
-			timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("empty"))));
-			for(int i = 0; i < date.length(); i++)
-				if (date.charAt(i) == '0')
-				{
-					if (i != 0 && i != 3)
-						timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("0"))));
-					else
-						timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("empty"))));
-				}
-				else if (date.charAt(i) == '1')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("1"))));
-				else if (date.charAt(i) == '2')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("2"))));
-				else if (date.charAt(i) == '3')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("3"))));
-				else if (date.charAt(i) == '4')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("4"))));
-				else if (date.charAt(i) == '5')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("5"))));
-				else if (date.charAt(i) == '6')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("6"))));
-				else if (date.charAt(i) == '7')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("7"))));
-				else if (date.charAt(i) == '8')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("8"))));
-				else if (date.charAt(i) == '9')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("9"))));
-				else if (date.charAt(i) == '/')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("Slash"))));
-			
-			for(int i = 0; i < time.length() - 2; i++)
-				if (time.charAt(i) == '0')
-				{
-					if (i != 0 && i != 3)
-						timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("0"))));
-					else
-						timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("empty"))));
-				}
-				else if (time.charAt(i) == '1')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("1"))));
-				else if (time.charAt(i) == '2')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("2"))));
-				else if (time.charAt(i) == '3')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("3"))));
-				else if (time.charAt(i) == '4')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("4"))));
-				else if (time.charAt(i) == '5')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("5"))));
-				else if (time.charAt(i) == '6')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("6"))));
-				else if (time.charAt(i) == '7')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("7"))));
-				else if (time.charAt(i) == '8')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("8"))));
-				else if (time.charAt(i) == '9')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("9"))));
-				else if (time.charAt(i) == ':')
-					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("Colon"))));
+		for(int i = 0; i < time.length() - 2; i++)
+			if (time.charAt(i) == '0')
+			{
+				if (i != 0)
+					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("0"))));
+				else
+					timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("empty"))));
+			}
+			else if (time.charAt(i) == '1')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("1"))));
+			else if (time.charAt(i) == '2')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("2"))));
+			else if (time.charAt(i) == '3')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("3"))));
+			else if (time.charAt(i) == '4')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("4"))));
+			else if (time.charAt(i) == '5')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("5"))));
+			else if (time.charAt(i) == '6')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("6"))));
+			else if (time.charAt(i) == '7')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("7"))));
+			else if (time.charAt(i) == '8')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("8"))));
+			else if (time.charAt(i) == '9')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("9"))));
+			else if (time.charAt(i) == ':')
+				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("Colon"))));
 
-			if (time.substring(time.length() - 2 , time.length()).equals("am"))
-				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("am"))));
-			else if (time.substring(time.length() - 2 , time.length()).equals("pm"))
-				timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("pm"))));
+		if (time.substring(time.length() - 2 , time.length()).equals("am"))
+			timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("am"))));
+		else if (time.substring(time.length() - 2 , time.length()).equals("pm"))
+			timeDatePanel.add(new JLabel(new ImageIcon(imageSet.get("pm"))));
 	}
-
 
 	public void flyerAssembly()
 	{
-		contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
-		contentPane.add(eventPanel, BorderLayout.EAST);
-		contentPane.add(timeDatePanel, BorderLayout.CENTER);
-		contentPane.add(logoPanel, BorderLayout.NORTH);
-		contentPane.add(eventPanel, BorderLayout.SOUTH);
+//		contentPane = getContentPane();
+		this.setLayout(new BorderLayout());
+		this.add(eventPanel, BorderLayout.EAST);
+		this.add(timeDatePanel, BorderLayout.CENTER);
+
+		JPanel topPanel = new JPanel(new BorderLayout());
+		topPanel.add(logoPanel, BorderLayout.NORTH);
+		topPanel.add(timeDatePanel, BorderLayout.CENTER);
+		this.add(topPanel, BorderLayout.NORTH);
+		this.add(eventPanel, BorderLayout.SOUTH);
 	}
 
 }
