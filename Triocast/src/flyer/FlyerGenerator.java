@@ -3,8 +3,10 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -26,19 +28,12 @@ import json.JSONObject;
 
 public class FlyerGenerator extends JFrame{
 	private Container contentPane;
-	//	private static JPanel tagsPanel;
-	private JPanel eventPanel; //is this the same as tagsPanel?
+	private JPanel eventPanel;
 	/*
 	 * consider: what makes an event picture?
 	 * consider: make it like Bang! in which events are made up of the tags that are associated with them
-	 * a church service would be: a cross?
-	 * a church service, with a meal: a cross AND a meal icon
 	 */
 	private JPanel timeDatePanel;
-
-	/*
-	 * consider: include DAY OF THE WEEK and also CALENDAR DATE
-	 */
 
 	private JPanel logoPanel;
 	
@@ -53,14 +48,15 @@ public class FlyerGenerator extends JFrame{
 		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
 		setTitle("");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 //		setUndecorated(true);
 		eventPanelSetup((boolean[])info.get("tags"));
 		timeDatePanelSetup(info.getString("day"), info.getString("date"), info.getString("time"));
-		
+
 		//**logoPanel!!**
 		logoPanel = new JPanel();
 		try {
-			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("UMDGrayscale_small.png")))));
+			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/UMDGrayscale_small.png")))));
 		} catch (Exception e) {
 			System.out.println("logo load error!");
 		}
@@ -80,13 +76,14 @@ public class FlyerGenerator extends JFrame{
 		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
 		setTitle("");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 	//	setUndecorated(true);
 		eventPanelSetup(tags);
 		timeDatePanelSetup(day, date, time);
 		//**logoPanel!!**
 		logoPanel = new JPanel();
 		try {
-			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("UMDGrayscale_small.png")))));
+			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/UMDGrayscale_small.png")))));
 		} catch (Exception e) {
 			System.out.println("logo load error!");
 		}
@@ -113,34 +110,34 @@ public class FlyerGenerator extends JFrame{
 		eventPanel = new JPanel(new GridLayout(1, tags.length)); //by default, is FlowLayout. grid it?
 		try {
 			if (tags[0])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Meal.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Meal.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Meal Grey.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Meal Grey.png")))));
 
 			if (tags[1])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Religious.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Religious.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Religious Grey.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Religious Grey.png")))));
 
 			if (tags[2])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Education.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Education.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Education Grey.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Education Grey.png")))));
 
 			if (tags[3])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Shelter.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Shelter.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Shelter Grey.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Shelter Grey.png")))));
 
 			if (tags[4])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Budget.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Budget.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Budget.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Budget Grey.png")))));
 
 			if (tags[5])
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Donations.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Donations.png")))));
 			else
-				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Donations Grey.png")))));
+				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Donations Grey.png")))));
 		} catch (Exception e) {
 
 		}
@@ -155,20 +152,20 @@ public class FlyerGenerator extends JFrame{
 			//assume DAY is only of these values
 
 			if (day.equals("Monday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("01 Monday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/01 Monday.png")))));
 			else if (day.equals("Tuesday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("02 Tuesday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/02 Tuesday.png")))));
 			else if (day.equals("Wednesday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("03 Wednesday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/03 Wednesday.png")))));
 			else if (day.equals("Thursday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("04 Thursday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/04 Thursday.png")))));
 			else if (day.equals("Friday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("05 Friday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/05 Friday.png")))));
 			else if (day.equals("Saturday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("06 Saturday.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/06 Saturday.png")))));
 			else if (day.equals("Sunday"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("07 Sunday.png")))));
-			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("empty.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/07 Sunday.png")))));
+			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/empty.png")))));
 		} catch (Exception e) {
 			System.out.println("day load error!");
 		}
@@ -177,30 +174,30 @@ public class FlyerGenerator extends JFrame{
 				if (date.charAt(i) == '0')
 				{
 					if (i != 0 && i != 3)
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("0.png")))));
+						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/0.png")))));
 					else
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("empty.png")))));
+						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/empty.png")))));
 				}
 				else if (date.charAt(i) == '1')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("1.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/1.png")))));
 				else if (date.charAt(i) == '2')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("2.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/2.png")))));
 				else if (date.charAt(i) == '3')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("3.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/3.png")))));
 				else if (date.charAt(i) == '4')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("4.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/4.png")))));
 				else if (date.charAt(i) == '5')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("5.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/5.png")))));
 				else if (date.charAt(i) == '6')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("6.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/6.png")))));
 				else if (date.charAt(i) == '7')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("7.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/7.png")))));
 				else if (date.charAt(i) == '8')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("8.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/8.png")))));
 				else if (date.charAt(i) == '9')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("9.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/9.png")))));
 				else if (date.charAt(i) == '/')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Slash.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Slash.png")))));
 		} catch (Exception e) {
 			System.out.println("number load error!");
 		}
@@ -210,35 +207,35 @@ public class FlyerGenerator extends JFrame{
 				if (time.charAt(i) == '0')
 				{
 					if (i != 0)
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("0.png")))));
+						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/0.png")))));
 					else
-						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("empty.png")))));
+						timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/empty.png")))));
 				}
 				else if (time.charAt(i) == '1')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("1.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/1.png")))));
 				else if (time.charAt(i) == '2')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("2.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/2.png")))));
 				else if (time.charAt(i) == '3')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("3.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/3.png")))));
 				else if (time.charAt(i) == '4')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("4.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/4.png")))));
 				else if (time.charAt(i) == '5')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("5.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/5.png")))));
 				else if (time.charAt(i) == '6')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("6.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/6.png")))));
 				else if (time.charAt(i) == '7')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("7.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/7.png")))));
 				else if (time.charAt(i) == '8')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("8.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/8.png")))));
 				else if (time.charAt(i) == '9')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("9.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/9.png")))));
 				else if (time.charAt(i) == ':')
-					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Colon.png")))));
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Colon.png")))));
 
 			if (time.substring(time.length() - 2 , time.length()).equals("am"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("am.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/am.png")))));
 			else if (time.substring(time.length() - 2 , time.length()).equals("pm"))
-				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("pm.png")))));
+				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/pm.png")))));
 		} catch (Exception e) {
 			System.out.println("number load error!");
 		}

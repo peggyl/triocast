@@ -14,12 +14,11 @@ public class FlyerRunner {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-
-		
+	
 		boolean[] tags = new boolean[6];
 		for(int i = 0; i < tags.length; i++)
 			tags[i] = Math.random() < .3;
+		tags[(int)(Math.random() * tags.length)] = true;
 		
 		String time = "", date = "", dayWeek = "";
 		
