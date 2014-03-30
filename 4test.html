@@ -7,13 +7,14 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="css/bootstrap-timepicker.css" rel="stylesheet">
+      <link href="css/business-frontpage.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 <script>
 $(function() {
@@ -23,46 +24,313 @@ $(function() {
 });
 </script>
 
+<!-- Web fonts here-->
+<link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+
+<!-- Mini Stylesheet here -->
+<style>
+		body {
+			  background: url(http://upload.wikimedia.org/wikipedia/commons/b/b8/2008-07-23_Picnic_tables_at_Durham_Public_Schools_Central_Services.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+			}
+			
+		h1 {
+   			font-family: 'Droid Serif', Georgia, Times, serif;
+    		font-size: 49px;
+    		line-height: 65px;
+			}
+ 
+		body {
+    		font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    		font-size: 14px;
+    		line-height: 25px;
+			}
+			
+		#white {
+			color: #FFFFFF;
+		}
+		
+		#foot {
+		   color: #FFFFFF;
+		}
+			
+</style>
 </head>  
 <body>  
+<div class="container">
+	
+    <nav class=" navbar navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle navbar-default" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <img src="logosize.jpg" id="logo" class="visible-lg col-md-offset-4"/>
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+            <ul class="nav navbar-nav navbar-right navbar-default">
+                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-search"></span>Search <b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="min-width: 300px;">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="navbar-form navbar-left" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button">
+                                                Go!</button>
+                                        </span>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-envelope"></span>Inbox <span class="label label-info">32</span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="label label-warning">4:00 AM</span>Favourites Snippet</a></li>
+                        <li><a href="#"><span class="label label-warning">4:30 AM</span>Email marketing</a></li>
+                        <li><a href="#"><span class="label label-warning">5:00 AM</span>Subscriber focused email
+                            design</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="text-center">View All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-user"></span><img src="umdlogo.gif"/> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</div>
+
+    <div class="business-header">
+
+       <!-- <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="tagline">An Informative Tagline Goes Here</h1>
+                </div>
+            </div>
+
+        </div> -->
+
+    </div>
+
+
 
 <div class="container-fluid">
+	<header class="row-fluid">
+    <br><br><br><br>
+    	<h1 class="col-md-11 col-md-offset-1" id="white"><center>Create an Event</center></h1>
+        
+        <br><br>
 
-<div class="col-md-3">
-    <div class="sidebar-nav">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-sm visible-xs navbar-brand">Sidebar menu</span>
+    </header>
+
+<div class="row-fluid">
+
+<div class="col-sm-2 col-md-2 visible-lg">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>Content Management</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Create Event</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">Edit Event</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Newsletters</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Comments</a>
+                                        <span class="badge">42</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span>Past Events</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Event Posters</a> <span class="label label-success">Print Management</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Event Texts</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Event Voicemails</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Photo Gallery</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                            </span>People</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Event Attendee Tracker</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Client Database</a> <span class="label label-info">5</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Volunteer Database</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user text-danger"></span><a href="http://www.jquery2dotnet.com" class="text-danger">
+                                            Staff Database</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                            </span>Analytics</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-sort"></span><a href="http://www.jquery2dotnet.com">Turnouts</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Reflections/Reviews</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Event Ratings</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Budget</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Menu Item 1</a></li>
-            <li><a href="#">Menu Item 2</a></li>
-            <li><a href="#">Menu Item 3</a></li>
-            <li><a href="#">Menu Item 4</a></li>
-            <li><a href="#">Reviews <span class="badge">1,118</span></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+
+  <div class="col-md-5 col-md-offset-2">
+  <div class="well">
+  
+  
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Yo Imma Help You</h4>
+      </div>
+      <div class="modal-body">
+        Look at me helping you and stuff
+        <br>
+        I am giving you really useful information
+        <br>
+        <br>
+        For live assistance call (111)-111-1111, or chat with us live <a href="www.google.com">here</a>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="col-md-4 col-md-offset-4">
-  <div class="well">
   
 <form class="form-horizontal">  
         <fieldset>  
-          <legend><p class="addtask">Create an event</p></legend>  
+          <legend><p class="addtask"><a data-toggle="modal" data-target="#myModal">Need help? Click here!</a></p></legend>  
           <div class="control-group">  
             <label class="control-label" for="input01">Event Name</label>  
             <div class="controls">  
-              <input name = "event" type="text" class="input-xlarge" id="input01" placeholder = "Name of the event">    
+              <input name = "event" type="text" class="form-control" id="input01" placeholder = "Name of the event">    
             </div>  
           </div>  
           
@@ -73,44 +341,83 @@ $(function() {
             </div>  
           </div>  
           
-          <div class="control-group">  
-            <label class="control-label" for="input01">Event Time:</label>  
-            <div class="input-append bootstrap-timepicker">
-				<input type="text" id="bootstrap-timepicker" />     
-					<span class="add-on">              
-					</span>
-			</div>
-          </div>  
           
-          <div class="control-group">  
-            <label class="control-label" for="optionsCheckbox">Type of event:</label>  
-            <div class="controls">  
-              <label class="checkbox">  
-                <input type="checkbox" id="optionsCheckbox" value="financial">  
-                Financial<br>
-                <input type="checkbox" id="optionsCheckbox" value="food">  
-                Food<br>
-                <input type="checkbox" id="optionsCheckbox" value="healthcare">  
-                Healthcare
-              </label>  
-            </div>  
-          </div>  
+                  <div class="control-group">  
+                    <label class="control-label" for="input01">Event Time:</label>  
+                    <div class="input-append bootstrap-timepicker">
+                        <input type="text" id="bootstrap-timepicker" />     
+                            <span class="add-on">              
+                            </span>
+                    </div>
+                  </div>  
+         <div> <label class="control-label" for="optionsCheckbox">Type of event:</label></div>
+         <div class="text-muted">Select as many as apply</div>
+          <div class="col-md-4">
+                  <div class="control-group">  
+                    <div class="controls">  
+                      <label class="checkbox">  
+                        <input type="checkbox" id="optionsCheckbox" value="financial">  
+                        Financial<br>
+                        <input type="checkbox" id="optionsCheckbox" value="food">  
+                        Food<br>
+                        <input type="checkbox" id="optionsCheckbox" value="healthcare">  
+                        Healthcare
+                      </label>  
+                    </div>  
+                  </div>  
+                  </div>
+              <div class="col-md-4">
+                  <div class="control-group">  
+                    <div class="controls">  
+                      <label class="checkbox">  
+                        <input type="checkbox" id="optionsCheckbox" value="religious">  
+                        Religious<br>
+                        <input type="checkbox" id="optionsCheckbox" value="education">  
+                        Education<br>
+                        <input type="checkbox" id="optionsCheckbox" value="shelter">  
+                        Shelter
+                      </label>  
+                    </div>  
+                  </div>  
+               </div>
+                 <div class="col-md-4">
+                  <div class="control-group">  
+                    <div class="controls">  
+                      <label class="checkbox">  
+                        <input type="checkbox" id="optionsCheckbox" value="supplies">  
+                        Supplies<br>
+                        <input type="checkbox" id="optionsCheckbox" value="food">  
+                        Food<br>
+                        <input type="checkbox" id="optionsCheckbox" value="healthcare">  
+                        Healthcare
+                      </label>  
+                    </div>  
+                  </div>  
+               </div>
+                  
+                  
 
           <div class="control-group">  
             <label class="control-label" for="textarea">Additional Notes:</label>  
             <div class="controls">  
-              <textarea name="notes" class="input-xlarge" id="textarea" rows="3"></textarea>  
+              <textarea name="notes" class="form-control" id="textarea" rows="3"></textarea>  
             </div>  
           </div>  
           <div class="form-actions">  
-            <button type="submit" class="btn btn-primary">Save changes</button>  
-            <button class="btn">Cancel</button>  
+            <button type="submit" class="btn btn-primary">Submit</button>  
+            <button class="btn">Save Changes</button>  
           </div>  
         </fieldset>  
 </form>  
+
 </div>
 </div>
 </div>
+</div>
+
+    <footer class="col-md-2 col-md-offset-10" id="foot">
+    	&copy; 2014 TrioCast
+</footer>
 
 </body>  
 </html>  
