@@ -97,35 +97,6 @@ public class FlyerGenerator extends JFrame{
 		timeDatePanel = new JPanel();
 		String[] dateSplit = date.split("/");
 		try{
-			//		if (day.equals("monday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("monday.png")))));
-			//		}
-			//		else if (day.equals("tuesday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-			//		else if (day.equals("wednesday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-			//		else if (day.equals("thursday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-			//		else if (day.equals("friday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-			//		else if (day.equals("saturday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-			//		else if (day.equals("sunday"))
-			//		{
-			//			locationPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("location_placeholder.png")))));
-			//		}
-
 			//assume DAY is only of these values
 			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File(day + ".png")))));
 		} catch (Exception e) {
@@ -158,7 +129,7 @@ public class FlyerGenerator extends JFrame{
 		      );
 		    // call the Component's paint method, using
 		    // the Graphics object of the image.
-		    component.paint( image.getGraphics() );
+		    component.paint(image.getGraphics());
 		    return image;
 		  }
 }
