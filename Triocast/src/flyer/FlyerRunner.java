@@ -1,7 +1,7 @@
 package flyer;
 import java.io.File;
-
 import javax.imageio.ImageIO;
+import json.JSONObject;
 
 /**
  * 
@@ -15,11 +15,11 @@ public class FlyerRunner {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		JSONObject info = new JSONObject();
+
 		
 		boolean[] tags = new boolean[6];
 		for(int i = 0; i < tags.length; i++)
-			tags[i] = Math.random() < .5;
+			tags[i] = Math.random() < .3;
 		
 		String time = "", date = "", dayWeek = "";
 		
@@ -57,13 +57,17 @@ public class FlyerRunner {
 		case 6: dayWeek = "Saturday"; break;
 		}
 		
-		System.out.println(dayWeek + " " + date + " @ " + time);
+//		System.out.println(dayWeek + " " + date + " @ " + time);
 		
-		
-		FlyerGenerator fg = new FlyerGenerator("600x800", tags, dayWeek, date, time);
-		
+		JSONObject info = new JSONObject();
+		info.put("date", date);
+		info.put("time", time);
+		info.put("size", "600x800");
+		info.put("day", dayWeek);
+		info.put("tags", tags);
+//		FlyerGenerator fg = new FlyerGenerator("600x800", tags, dayWeek, date, time);
+		FlyerGenerator fg = new FlyerGenerator(info);
 		fg.setVisible(true);
-
 		try {
             // write the image as a PNG
             ImageIO.write(

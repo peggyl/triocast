@@ -5,11 +5,14 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import json.JSONObject;
 
 /**
  * 
@@ -17,6 +20,8 @@ import javax.swing.JPanel;
  * This will take input data from a form/JSON object and craft a flyer for Urban Ministries of Durham
  * to communicate the times and dates of their events, and what kinds of events they are. It is possibly understandable
  * by both literate and illiterate people, by use of symbols and numbers.
+ * 
+ * using Douglas Crockford's JSONObject class and other classes necessary to make that function
  */
 
 public class FlyerGenerator extends JFrame{
@@ -39,7 +44,29 @@ public class FlyerGenerator extends JFrame{
 	
 	public FlyerGenerator(JSONObject info)
 	{
+		super();
+		/*
+		 * assumptions:
+		 * size is in format "NUMBERxNUMBER"
+		 */
+		String[] sizeParse = info.getString("size").split("x");
+		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
+		setTitle("");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+//		setUndecorated(true);
+		eventPanelSetup((boolean[])info.get("tags"));
+		timeDatePanelSetup(info.getString("day"), info.getString("date"), info.getString("time"));
 		
+		//**logoPanel!!**
+		logoPanel = new JPanel();
+		try {
+			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("UMDGrayscale_small.png")))));
+		} catch (Exception e) {
+			System.out.println("logo load error!");
+		}
+
+		//assemble panels in the window
+		flyerAssembly();
 	}
 
 	public FlyerGenerator(String size, boolean[] tags, String day, String date, String time)
@@ -52,7 +79,8 @@ public class FlyerGenerator extends JFrame{
 		String[] sizeParse = size.split("x");
 		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
 		setTitle("");
-
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	//	setUndecorated(true);
 		eventPanelSetup(tags);
 		timeDatePanelSetup(day, date, time);
 		//**logoPanel!!**
@@ -60,11 +88,11 @@ public class FlyerGenerator extends JFrame{
 		try {
 			logoPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("UMDGrayscale_small.png")))));
 		} catch (Exception e) {
-			System.out.println("logo load lol!");
+			System.out.println("logo load error!");
 		}
 
 		//assemble panels in the window
-
+		flyerAssembly();
 	}
 
 	public static BufferedImage getScreenShot(
@@ -82,10 +110,8 @@ public class FlyerGenerator extends JFrame{
 	public void eventPanelSetup(boolean[] tags)
 	{
 		//**eventPanel!!**
-		eventPanel = new JPanel(); //by default, is FlowLayout. grid it?
-		eventPanel.setLayout(new GridLayout(1, tags.length));
+		eventPanel = new JPanel(new GridLayout(1, tags.length)); //by default, is FlowLayout. grid it?
 		try {
-
 			if (tags[0])
 				eventPanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Meal.png")))));
 			else
@@ -144,7 +170,7 @@ public class FlyerGenerator extends JFrame{
 				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("07 Sunday.png")))));
 			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("empty.png")))));
 		} catch (Exception e) {
-			System.out.println("day load lol!");
+			System.out.println("day load error!");
 		}
 		try{
 			for(int i = 0; i < date.length(); i++)
@@ -176,7 +202,7 @@ public class FlyerGenerator extends JFrame{
 				else if (date.charAt(i) == '/')
 					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("Slash.png")))));
 		} catch (Exception e) {
-			System.out.println("number load lol!");
+			System.out.println("number load error!");
 		}
 
 		try{
@@ -214,7 +240,7 @@ public class FlyerGenerator extends JFrame{
 			else if (time.substring(time.length() - 2 , time.length()).equals("pm"))
 				timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("pm.png")))));
 		} catch (Exception e) {
-			System.out.println("number load lol!");
+			System.out.println("number load error!");
 		}
 	}
 
