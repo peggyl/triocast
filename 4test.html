@@ -1,0 +1,116 @@
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+<meta charset="utf-8">   
+<title>Twitter Bootstrap Version2.0 horizontal form layout example</title>   
+<meta name="description" content="Twitter Bootstrap Version2.0 horizontal form layout example from w3resource.com.">   
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="css/bootstrap-timepicker.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script>
+$(function() {
+    $( "#datepicker" ).datepicker();
+	console.log("blah");
+	$('.bootstrap-timepicker').timepicker();
+});
+</script>
+
+</head>  
+<body>  
+
+<div class="container-fluid">
+
+<div class="col-md-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-sm visible-xs navbar-brand">Sidebar menu</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Menu Item 3</a></li>
+            <li><a href="#">Menu Item 4</a></li>
+            <li><a href="#">Reviews <span class="badge">1,118</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-md-offset-4">
+  <div class="well">
+  
+<form class="form-horizontal">  
+        <fieldset>  
+          <legend><p class="addtask">Create an event</p></legend>  
+          <div class="control-group">  
+            <label class="control-label" for="input01">Event Name</label>  
+            <div class="controls">  
+              <input name = "event" type="text" class="input-xlarge" id="input01" placeholder = "Name of the event">    
+            </div>  
+          </div>  
+          
+          <div class="control-group">  
+            <label class="control-label" for="input01">Date of Event:</label>  
+            <div class="controls">  
+              <input name = "Date" type="text" class="input-xlarge" id="datepicker" placeholder = "MM/DD/YY" data-date-format="mm/dd/yy">   
+            </div>  
+          </div>  
+          
+          <div class="control-group">  
+            <label class="control-label" for="input01">Event Time:</label>  
+            <div class="input-append bootstrap-timepicker">
+				<input type="text" id="bootstrap-timepicker" />     
+					<span class="add-on">              
+					</span>
+			</div>
+          </div>  
+          
+          <div class="control-group">  
+            <label class="control-label" for="optionsCheckbox">Type of event:</label>  
+            <div class="controls">  
+              <label class="checkbox">  
+                <input type="checkbox" id="optionsCheckbox" value="financial">  
+                Financial<br>
+                <input type="checkbox" id="optionsCheckbox" value="food">  
+                Food<br>
+                <input type="checkbox" id="optionsCheckbox" value="healthcare">  
+                Healthcare
+              </label>  
+            </div>  
+          </div>  
+
+          <div class="control-group">  
+            <label class="control-label" for="textarea">Additional Notes:</label>  
+            <div class="controls">  
+              <textarea name="notes" class="input-xlarge" id="textarea" rows="3"></textarea>  
+            </div>  
+          </div>  
+          <div class="form-actions">  
+            <button type="submit" class="btn btn-primary">Save changes</button>  
+            <button class="btn">Cancel</button>  
+          </div>  
+        </fieldset>  
+</form>  
+</div>
+</div>
+</div>
+
+</body>  
+</html>  
