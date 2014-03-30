@@ -27,9 +27,7 @@ import json.JSONObject;
  */
 
 public class FlyerGeneratorApplet extends JPanel{
-	private Container contentPane;
-	//	private static JPanel tagsPanel;
-	private JPanel eventPanel; //is this the same as tagsPanel?
+	private JPanel eventPanel;
 	/*
 	 * consider: what makes an event picture?
 	 * consider: make it like Bang! in which events are made up of the tags that are associated with them
@@ -183,11 +181,10 @@ public class FlyerGeneratorApplet extends JPanel{
 
 	public void flyerAssembly()
 	{
-//		contentPane = getContentPane();
 		this.setLayout(new BorderLayout());
 		this.add(eventPanel, BorderLayout.EAST);
 		this.add(timeDatePanel, BorderLayout.CENTER);
-
+		
 		JPanel topPanel = new JPanel(new BorderLayout());
 		topPanel.add(logoPanel, BorderLayout.NORTH);
 		topPanel.add(timeDatePanel, BorderLayout.CENTER);

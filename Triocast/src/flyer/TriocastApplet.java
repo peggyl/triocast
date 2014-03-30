@@ -1,9 +1,7 @@
 package flyer;
 import java.awt.Image;
-import java.io.File;
 import java.util.HashMap;
 
-import javax.imageio.ImageIO;
 import javax.swing.JApplet;
 import javax.swing.SwingUtilities;
 
@@ -124,22 +122,11 @@ public class TriocastApplet extends JApplet{
 					
 					info2.put("tags", tags);
 
-					FlyerGeneratorApplet fg = new FlyerGeneratorApplet(info2, imageSet);
+					FlyerGeneratorApplet fg = new FlyerGeneratorApplet(info, imageSet);
 					
 					TriocastApplet.this.add(fg);
 					fg.setVisible(true);
 					
-//					
-//					try {
-//						// write the image as a PNG
-//						ImageIO.write(
-//								FlyerGeneratorApplet.getScreenShot(fg.getContentPane()),
-//								"png",
-//								new File("flyer_applet.png"));
-//						System.out.println("Screenshot taken!");
-//					} catch(Exception e) {
-//						e.printStackTrace();
-//					}
 				}
 			});
 		} catch (Exception e) {
