@@ -7,12 +7,25 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 	$(document).ready(function() {
-		$("#send").click(function() {
+		$("#text").click(function() {
 			$.ajax({
 				type: "POST",
-				url: "/sendtest",
+				url: "/text",
 				data: JSON.stringify({
-					'name': $("#name").val()
+					'message': $("#message").val()
+				}),
+				contentType: 'application/json;charset=UTF-8',
+				success: function(result) {
+					alert(result);
+				}
+			});
+		});
+		$("#call").click(function() {
+			$.ajax({
+				type: "POST",
+				url: "/call",
+				data: JSON.stringify({
+					'message': $("#message").val(),
 				}),
 				contentType: 'application/json;charset=UTF-8',
 				success: function(result) {
@@ -26,8 +39,14 @@
 <body>
 <h1>Welcome to Triocast</h1>
 
-<input id="name" autofocus">
-<button type="button" id="send">Click to send test message</button>
+<input id="message" autofocus">
+<button type="button" id="text">Click to send SMS message</button>
+<button type="button" id="call">Click to make a voice call</button>
+
+<h2>Manage Users</h2>
+<h3>Add, delete, or edit users</h3>
+
+<button type="button" id="add">Add a new person</button>
 	
 </body>
 </html>
