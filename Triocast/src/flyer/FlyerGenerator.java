@@ -1,12 +1,15 @@
 package flyer;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,13 +55,13 @@ public class FlyerGenerator extends JFrame{
 		String[] sizeParse = size.split("x");
 		setSize(Integer.parseInt(sizeParse[0]), Integer.parseInt(sizeParse[1]));
 		setTitle("");
-
 		//load info
 
 		//put images necessary in each panel
 
 		//**eventPanel!!**
 		eventPanel = new JPanel(); //by default, is FlowLayout
+		eventPanel.setLayout(new GridLayout(tags.length, 1));
 		for(int i = 0; i < tags.length; i++)
 		{
 			if (tags[i].equals(""))
@@ -95,12 +98,42 @@ public class FlyerGenerator extends JFrame{
 
 		//**timeDatePanel!!**
 		timeDatePanel = new JPanel();
-		String[] dateSplit = date.split("/");
 		try{
 			//assume DAY is only of these values
 			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File(day + ".png")))));
 		} catch (Exception e) {
 			System.out.println("day load lol!");
+		}
+		try{
+			//assume DAY is only of these values
+//			timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("date_placeholder.png")))));
+			for(int i = 0; i < date.length(); i++)
+				if (date.charAt(i) == '0')
+				{
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("zero.png")))));
+				}
+				else if (date.charAt(i) == '1')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("one.png")))));
+				else if (date.charAt(i) == '2')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("two.png")))));
+				else if (date.charAt(i) == '3')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("three.png")))));
+				else if (date.charAt(i) == '4')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("four.png")))));
+				else if (date.charAt(i) == '5')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("five.png")))));
+				else if (date.charAt(i) == '6')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("six.png")))));
+				else if (date.charAt(i) == '7')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("seven.png")))));
+				else if (date.charAt(i) == '8')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("eight.png")))));
+				else if (date.charAt(i) == '9')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("nine.png")))));
+				else if (date.charAt(i) == '/')
+					timeDatePanel.add(new JLabel(new ImageIcon(ImageIO.read(new File("slash.png")))));
+		} catch (Exception e) {
+			System.out.println("date load lol!");
 		}
 
 		//**logoPanel!!**
@@ -112,11 +145,20 @@ public class FlyerGenerator extends JFrame{
 		}
 
 		//assemble panels in the window
+		
 		contentPane = getContentPane();
-		contentPane.add(eventPanel, BorderLayout.CENTER);
-		contentPane.add(timeDatePanel, BorderLayout.NORTH);
-		contentPane.add(locationPanel, BorderLayout.EAST);
-		contentPane.add(logoPanel, BorderLayout.SOUTH);
+		contentPane.setLayout(new BorderLayout());
+//		contentPane.add(eventPanel, BorderLayout.CENTER);
+//		contentPane.add(timeDatePanel, BorderLayout.NORTH);
+//		contentPane.add(locationPanel, BorderLayout.EAST);
+//		contentPane.add(logoPanel, BorderLayout.SOUTH);
+		contentPane.add(eventPanel, BorderLayout.EAST);
+//		contentPane.setLayout(new GridLayout(2, 3));
+		contentPane.add(timeDatePanel, BorderLayout.CENTER);
+		contentPane.add(locationPanel, BorderLayout.SOUTH);
+//		contentPane.add(new JPanel());
+//		contentPane.add(new JPanel());
+		contentPane.add(logoPanel, BorderLayout.NORTH);
 	}
 	
 	public static BufferedImage getScreenShot(

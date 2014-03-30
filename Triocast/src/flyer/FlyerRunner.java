@@ -8,8 +8,8 @@ public class FlyerRunner {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] tags = {"meal", "religious"};
-		FlyerGenerator fg = new FlyerGenerator("800x600", tags, "monday", "3/29", "room");
+		String[] tags = {"meal", "religious", "", ""};
+		FlyerGenerator fg = new FlyerGenerator("600x800", tags, "monday", "03/29", "room");
 		fg.setVisible(true);
 
 		try {
