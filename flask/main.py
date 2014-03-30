@@ -2,33 +2,43 @@ from flask import Flask, request, jsonify, render_template, Response, url_for
 from twilio_settings import *
 import urllib2, os
 
+import data_manager
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-PHONE_NUMBERS = [
-	'+13013570811',
-	'+14085156785'
-]
+@app.route('/add-person', methods=['GET', 'POST'])
+def add_person():
+	print 'adding someone'
+	if request.method == 'POST':
+		name = request.json['name']
+		number = request.json['number']
+		sms = request.json['sms']
+		call = request.json['call']
+		print name, number, sms, call
 
-@app.route('/sendtest', methods=['GET', 'POST'])
-def send_test():
-    if request.method == 'POST':
-        name = request.json['name']
-        sms_message.send(name, to_number='13013570811')
-        return name if name else "Error"
+		data_manager.add(name, number, sms, call)
+		print 'Added'
+	return render_template("index.html")
 
-
-@app.route('/add-user', methods=['GET', 'POST'])
-def add_user():
-	return ''
+@app.route('/people')
+def list_people():
+	print 'people'
+	foo = ['Peggy']
+	print foo
+	return render_template("people.html")
 
 
 @app.route('/text', methods=['GET', 'POST'])
 def send_sms():
+	people = data_manager.read()
 	if request.method == 'POST':
 		message = request.json['message']
-		for num in PHONE_NUMBERS:
-			twilio_send(message, num)
+		for person in people:
+			info = person.split(',')
+			if info[2] == 'True':
+				num = info[1]
+				twilio_send(message, num)
 		return 'Success'
 
 @app.route('/call', methods=['GET', 'POST'])
@@ -36,19 +46,15 @@ def call_number():
 	if request.method == 'POST':
 		message = request.json['message']
 
-		print 'request.path: ' + request.path
-		print 'request.script_root: ' + request.script_root
-		print 'request.base_url: ' + request.base_url
-		print 'request.url: ' + request.url
-		print 'request.url_root: ' + request.url_root
 		with app.test_request_context():
 			url = 'http://triocast.herokuapp.com' + url_for('xml', msg=message)
-			# url = url_for('xml', msg=message, _external=True)
-			print url
-
-			for num in PHONE_NUMBERS:
-				print 'CALLING: %s' % num
-				twilio_call(url, num)
+			if (url):
+				people = data_manager.read()
+				for person in people:
+					info = person.split(',')
+					if info[3] == 'True':
+						num = info[1]
+						twilio_call(url, num)
 
 		return "Call succeeded"
 
@@ -76,6 +82,5 @@ def home():
     return render_template("index.html")
 
 if __name__ == '__main__':
-	print 'hi'
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host="0.0.0.0", port=port)

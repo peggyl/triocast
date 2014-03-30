@@ -1,4 +1,31 @@
 $(document).ready(function() {
+	$("#datepicker").datepicker();
+
+	$("#subscribe").click(function() {
+		var name = $('#name').val(),
+			number = $('#number').val(),
+			sms = $('sms').checked ? 'True' : 'False',
+			call = $('call').checked ? 'True': 'False';
+		if (name === undefined || number === undefined) {
+			alert("You must enter a name and phone number!");
+			return;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "/add-person",
+			data: JSON.stringify({
+				'name': name,
+				'number': number,
+				'sms': sms,
+				'call': call
+			}),
+			contentType: 'application/json;charset=UTF-8',
+		});
+
+	});
+
+	// Sending SMS messages or making calls 
 	$("#text").click(function() {
 		var msg = $("#message").val()
 		if (!checkMessageLength(msg)) {

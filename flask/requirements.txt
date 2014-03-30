@@ -1,4 +1,6 @@
 Flask==0.10.1
+Flask-PyMongo==0.3.0
+Flask-WTF==0.9.5
 Jinja2==2.7.2
 MarkupSafe==0.19
 WTForms==1.0.5
@@ -6,6 +8,7 @@ Werkzeug==0.9.4
 gunicorn==18.0
 httplib2==0.8
 itsdangerous==0.24
+pymongo==2.6.3
 requests==2.2.1
 six==1.6.1
 twilio==3.6.6
