@@ -17,5 +17,10 @@ def send_test():
 def home():
     return render_template("index.html")
 
+@app.route('/xmldump', methods=['GET', 'POST'])    
+# @app.route('/xmldump/<xfile>')
+def xml():
+	return "hello"
+
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", debug=True)
