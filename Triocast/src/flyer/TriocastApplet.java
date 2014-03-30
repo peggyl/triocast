@@ -107,10 +107,18 @@ public class TriocastApplet extends JApplet{
 					info.put("size", "600x800");
 					info.put("day", dayWeek);
 					info.put("tags", tags);
-
-					//					imageSet.get("logo");
-
-
+					
+					JSONObject info2 = new JSONObject();
+					info2.put("day", getParameter("day"));
+					info2.put("date", getParameter("date"));
+					info2.put("time", getParameter("time"));
+					
+					tags[0] = getParameter("Meal?").equals("true");
+					tags[1] = getParameter("Religious?").equals("true");
+					tags[2] = getParameter("Education?").equals("true");
+					tags[3] = getParameter("Shelter?").equals("true");
+					tags[4] = getParameter("Budget?").equals("true");
+					tags[5] = getParameter("Donations?").equals("true");
 
 					FlyerGeneratorApplet fg = new FlyerGeneratorApplet(info, imageSet);
 					fg.setVisible(true);
