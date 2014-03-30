@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#send").click(function() {
+			$.ajax({
+				type: "POST",
+				url: "/sendtest",
+				data: JSON.stringify({
+					'name': $("#name").val()
+				}),
+				contentType: 'application/json;charset=UTF-8',
+				success: function(result) {
+					alert(result);
+				}
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>Welcome to Triocast</h1>
+
+<input id="name" autofocus">
+<button type="button" id="send">Click to send test message</button>
+	
+</body>
+</html>
