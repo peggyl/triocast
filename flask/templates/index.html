@@ -4,49 +4,46 @@
 	<meta charset="UTF-8">
 	<title>Home</title>
 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script>
-	$(document).ready(function() {
-		$("#text").click(function() {
-			$.ajax({
-				type: "POST",
-				url: "/text",
-				data: JSON.stringify({
-					'message': $("#message").val()
-				}),
-				contentType: 'application/json;charset=UTF-8',
-				success: function(result) {
-					alert(result);
-				}
-			});
-		});
-		$("#call").click(function() {
-			$.ajax({
-				type: "POST",
-				url: "/call",
-				data: JSON.stringify({
-					'message': $("#message").val(),
-				}),
-				contentType: 'application/json;charset=UTF-8',
-				success: function(result) {
-					alert(result);
-				}
-			});
-		});
-	});
-	</script>
+	<script src="{{ url_for('static', filename='triocast.js') }}"></script>
+	<style>
+	body {
+		margin-bottom: 50px;
+	}
+	#logo {
+		height: 200px;
+		width: auto;
+	}
+	textarea {
+		width: 500px;
+	}
+	label {
+		display: block;
+	}
+	#msg-error {
+		font-weight: 1.2;
+		color: red;
+	}
+	</style>
 </head>
 <body>
-<h1>Welcome to Triocast</h1>
+<div class="container">
+	<header>
+		<h1>Welcome to Triocast</h1>
+		<image src="{{ url_for('static', filename='TriocastClear.png') }}" id="logo">
+	</header>
 
-<input id="message" autofocus">
-<button type="button" id="text">Click to send SMS message</button>
-<button type="button" id="call">Click to make a voice call</button>
-
-<h2>Manage Users</h2>
-<h3>Add, delete, or edit users</h3>
-
-<button type="button" id="add">Add a new person</button>
-	
+	<form role="form">
+		<div class="form-group">
+			<label>Message to send</label>
+			<!-- <input id="message" autofocus"> -->
+			<label id="msg-error"></label>
+			<textarea id="message" autofocus></textarea>
+		</div>
+		<button type="button" class="btn btn-default" id="text">Click to send SMS message</button>
+		<button type="button" class="btn btn-default" id="call">Click to make a voice call</button>
+	</form>
+</div>
 </body>
 </html>
